@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack-dev-server --config  --mode development --open",
+    "watch": "webpack --watch",
+    "dev": "nodemon ./server.js",
+    "start1": "node --inspect server.js",
+    "devstart": "npm-run-all --parallel watch dev ",
+    "debug": "npm-run-all --parallel watch start1"
   },
   "author": "Navin Tyagi",
   "license": "MIT",
@@ -14,11 +19,16 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^3.0.1",
+    "hbs": "^4.0.3",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.6.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
@@ -29,6 +39,9 @@
     "@babel/core": "^7.4.0",
     "babel-loader": "^8.0.5",
     "browser-sync": "^2.26.3",
-    "lodash": "^4.17.11"
+    "handlebars-loader": "^1.7.1",
+    "lodash": "^4.17.11",
+    "nodemon": "^1.18.10",
+    "npm-run-all": "^4.1.5"
   }
 }
