@@ -9,11 +9,12 @@ console.log(`inwebpack${__dirname}`)
 module.exports = {
   entry: [
     './web/style/main.scss',
-    './web/js/index.js'
+    './web/js/index.js',
+    './server.js'
     
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'Public'),
     filename: 'bundle.js'
   },
   plugins: [

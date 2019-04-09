@@ -1,15 +1,15 @@
-
+// debugger;
 // builtin
-var fs = require('fs');
+// var fs = require('fs');
 var path = require('path')
 // 3rd party
 var express = require('express');
 // var hbs = require('hbs');
 const exphbs  = require('express-handlebars');
-debugger;
+// debugger;
 var app = express();
-//app.use('/', express.static(path.resolve('dist')));
-app.use('/', express.static(path.resolve('dist')));
+// app.use('/', express.static(path.resolve('dist')));
+// app.use('/', express.static(path.resolve('dist')));
 //hbs.registerPartial('partial', fs.readFileSync(__dirname + '/web/views/partial.hbs', 'utf8'));
 // exphbs.registerPartials(__dirname + '/web/views/partials');
 // set the view engine to use handlebars
@@ -28,28 +28,30 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/web/views');
 
-app.use(express.static(__dirname + '/web'));
+app.use(express.static(__dirname + '/Public'));
 
-// app.get('/', (req, res) => {
-//     console.log('Hey Home Page Route called')
-//     res.render('index');
-//   });
 
-  app.all('/*', function(req, res, next) {
-    console.log('Navin',req);
-    next();  // call next() here to move on to next middleware/router
-  })  
-// app.get('/demo1', function(req, res) {
-//     res.locals = {
-//         some_value: 'foo bar',
-//         list: ['cat', 'dog']
-//     }
+app.get('/', (req, res) => {
+  debugger
+    console.log('Hey Home Page Route called')
+    res.render('index');
+  });
 
-//     res.render('index');
-// });
+ 
+app.get('/products', (req, res) => {
+  console.log('Hey Home Page Route called')
+  res.render('products');
+});
 
-// app.get('/demo', function(req, res) {
-//     res.render('demo');
-// });
+app.get('/signUp', (req, res) => {
+  console.log('Hey Home Page Route called')
+  res.render('register');
+});
+
+
+app.get('/signIn', (req, res) => {
+  console.log('Hey Home Page Route called')
+  res.render('login');
+});
 
 app.listen(8080);
