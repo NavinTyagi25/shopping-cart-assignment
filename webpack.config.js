@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const postcssloader = require('postcss-loader')
+const viewtags = require('./webpack.viewtags.js');
 
 console.log(`inwebpack${__dirname}`)
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
     
   ],
   output: {
-    path: path.resolve(__dirname, 'Public'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   plugins: [
@@ -24,6 +25,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'web/static/images', to: 'img' }
     ]),
+    function () { this.plugin('done', viewtags); },
     // new HtmlWebpackPlugin(
     //   {  // Also generate a test.html
     //     template: path.resolve(__dirname, './web/views/index.html'),
@@ -115,7 +117,11 @@ module.exports = {
     ]
   },
 
-  watch: true
+  watch: true,
+  node: {
+    fs: "empty"
+ }
+
   // },
   // devServer: {
   //   contentBase: path.join(__dirname, "/dist"),

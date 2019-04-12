@@ -1,57 +1,56 @@
-// debugger;
-// builtin
-// var fs = require('fs');
-var path = require('path')
-// 3rd party
+var createError = require('http-errors');
 var express = require('express');
-// var hbs = require('hbs');
-const exphbs  = require('express-handlebars');
-// debugger;
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var hbs = require('hbs');
+
+var indexRouter = require('./routes/index');
+
+
 var app = express();
-// app.use('/', express.static(path.resolve('dist')));
-// app.use('/', express.static(path.resolve('dist')));
-//hbs.registerPartial('partial', fs.readFileSync(__dirname + '/web/views/partial.hbs', 'utf8'));
-// exphbs.registerPartials(__dirname + '/web/views/partials');
-// set the view engine to use handlebars
-console.log(`server js ${__dirname}`)
-// console.log(`Navin ${req}`)
-var hbs = exphbs.create({
-  // Uses multiple partials dirs, templates in "shared/templates/" are shared
-  // with the client-side of the app (see below).
-  extname: '.hbs',
-  defaultLayout: path.join(__dirname,'./web/views/layouts/layout'),
-  partialsDir: [
-    path.resolve(__dirname,'./web/views/partials/')
-  ]
-});
-app.engine('hbs', hbs.engine);
+
+// view engine setup
+app.set('views', path.join(__dirname, './web/views'));
+hbs.registerHelper('math', function(lvalue, operator, rvalue) {lvalue = parseFloat(lvalue);
+        rvalue = parseFloat(rvalue);
+        return {
+            "+": lvalue + rvalue,
+            "-": lvalue - rvalue,
+            "*": lvalue * rvalue,
+            "/": lvalue / rvalue,
+            "%": lvalue % rvalue
+        }[operator];
+    }
+);
 app.set('view engine', 'hbs');
-app.set('views', __dirname + '/web/views');
-
-app.use(express.static(__dirname + '/Public'));
 
 
-app.get('/', (req, res) => {
-  debugger
-    console.log('Hey Home Page Route called')
-    res.render('index');
-  });
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(path.join(__dirname, './web/views/partials'));
 
- 
-app.get('/products', (req, res) => {
-  console.log('Hey Home Page Route called')
-  res.render('products');
+app.use('/', indexRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get('/signUp', (req, res) => {
-  console.log('Hey Home Page Route called')
-  res.render('register');
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
+module.exports = app;
 
-app.get('/signIn', (req, res) => {
-  console.log('Hey Home Page Route called')
-  res.render('login');
-});
 
-app.listen(8080);
