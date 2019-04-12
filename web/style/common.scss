@@ -49,6 +49,7 @@
   @include flex-row;
 }
 
+// Common file 
 .flex-column {
   @include flex-column;
 }
@@ -98,17 +99,29 @@ body {
 
 .nav {
   display: flex;
-  height: $header-height;
+  height: 55px;
+  
+  @include break-point(tablet) {
+    height: $header-height;  
+  }
+  @include break-point(desktop) {
+    height: $header-height;  
+  }
   box-shadow: 0 8px 6px -3px $grey-color-3;
   @include app-header-padding-changes;
 
   &__logo {
     margin-left: 1vw;
-    width: 29vw;
+    width: 20vw;
     padding: 9.5px 0;
     @include break-point(tablet) {
       margin-left: 0;
-      width: 16vw;
+      width: 23vw;
+    }
+
+    @include break-point(desktop) {
+      margin-left: 0;
+      width: 13vw;
     }
   }
   &__bar {

@@ -1,212 +1,31 @@
-{{!-- <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sabka Bazaar</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Dosis:400,600,700"
-    />  </head>
-  <body class="container"> --}}
-    
-
-    <main class="home">
-      <div class="slideshow-container">
-        <div class="mySlides fade">
-          <img
-            src="img/offers/offer5.jpg"
-            alt="independence day sale"
-            class="sale"
-            style="width:100%"
-          />
-        </div>
-
-        <div class="mySlides fade">
-          <img
-            src="img/offers/offer4.jpg"
-            alt="independence day sale"
-            class="sale"
-            style="width:100%"
-          />
-        </div>
-
-        <div class="mySlides fade">
-          <img
-            src="img/offers/offer3.jpg"
-            alt="independence day sale"
-            class="sale"
-            style="width:100%"
-          />
-        </div>
-        <div class="mySlides fade">
-          <img
-            src="img/offers/offer2.jpg"
-            alt="independence day sale"
-            class="sale"
-            style="width:100%"
-          />
-        </div>
-        <div class="mySlides fade">
-          <img
-            src="img/offers/offer1.jpg"
-            alt="independence day sale"
-            class="sale"
-            style="width:100%"
-          />
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        <div style="text-align:center">
-          <span class="dot" onclick="currentSlide(1)"></span>
-          <span class="dot" onclick="currentSlide(2)"></span>
-          <span class="dot" onclick="currentSlide(3)"></span>
-          <span class="dot" onclick="currentSlide(4)"></span>
-          <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-      </div>
-
-      <div class="flex-row category">
-        <img
-          src="/img/category/fruits.png"
-          alt="Fruits &amp; Vegetables logo"
-          class="category-logo"
-        />
-        <div class="flex-column category-detail">
-          <h1 class="category-detail__main">Fruits &amp; Vegetables</h1>
-          <h3 class="category-detail__sub">
-            A variety of fresh fruits and vegetables.
-          </h3>
-          <a href="/products/fruit-and-veg" class="btn"
-            >Explore fruit-and-veg</a
-          >
-        </div>
-      </div>
-
-      <div class="flex-row-reverse category">
-        <img
-          src="/img/category/bakery.png"
-          alt="Bakery Cakes and Dairy logo"
-          class="category-logo"
-        />
-        <div class="flex-column category-detail">
-          <h1 class="category-detail__main">Bakery Cakes and Dairy</h1>
-          <h3 class="category-detail__sub">
-            The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread,
-            biscotti, muffins, bagels, fresh coffee, milk and more.
-          </h3>
-          <a href="/products/bakery-cakes-dairy" class="btn"
-            >Explore bakery-cakes-dairy</a
-          >
-        </div>
-      </div>
-
-      <div class="flex-row category">
-        <img
-          src="/img/category/beverages.png"
-          alt="Beverages logo"
-          class="category-logo"
-        />
-        <div class="flex-column category-detail">
-          <h1 class="category-detail__main">Beverages</h1>
-          <h3 class="category-detail__sub">
-            Our beverage department will ensure your fridge is always fully
-            stocked. Shop for soda, juice, beer and more.
-          </h3>
-          <a href="/products/beverages" class="btn">Explore beverages</a>
-        </div>
-      </div>
-
-      <div class="flex-row-reverse category">
-        <img
-          src="/img/category/beauty.png"
-          alt="Beauty and Hygiene logo"
-          class="category-logo"
-        />
-        <div class="flex-column category-detail">
-          <h1 class="category-detail__main">Beauty and Hygiene</h1>
-          <h3 class="category-detail__sub">
-            Buy beauty and personal care products online in India at best
-            prices.
-          </h3>
-          <a href="/products/beauty-hygiene" class="btn"
-            >Explore beauty-hygiene</a
-          >
-        </div>
-      </div>
-
-      <div class="flex-row category">
-        <img
-          src="/img/category/baby.png"
-          alt="Baby Care logo"
-          class="category-logo"
-        />
-        <div class="flex-column category-detail">
-          <h1 class="category-detail__main">Baby Care</h1>
-          <h3 class="category-detail__sub">
-            Shop online for Baby Products, Diapers, Skin Care Products,etc.
-          </h3>
-          <a href="/products/baby" class="btn">Explore baby</a>
-        </div>
-      </div>
-    </main>
-  {{!-- {{< footer}} --}}
-    {{!-- <!-- The Modal -->
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close">&times;</span>
-        <h2>My Cart</h2>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the Modal Body</p>
-        <p>Some other text...</p>
-      </div>
-      <div class="modal-footer">
-        <h3>Start Shipping</h3>
-      </div>
+<main class="home">
+  <div class="slideshow-container">
+    {{#each banners}}
+    <div class="mySlides fade">
+      <img src={{bannerImageUrl}} alt={{bannerImageAlt}} class="sale" style="width:100%" />
     </div>
-  
+    {{/each}}
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+    <div style="text-align:center">
+
+      {{#each banners}}
+      <span class="dot" id={{order}} onclick="currentSlide({{order}})"></span>
+      {{/each}}
+    </div>
   </div>
-  
 
-  </body>
-  <!-- The Modal -->
-  
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-      showSlides((slideIndex += n));
-    }
-
-    function currentSlide(n) {
-      showSlides((slideIndex = n));
-    }
-
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("dot");
-      if (n > slides.length) {
-        slideIndex = 1;
-      }
-      if (n < 1) {
-        slideIndex = slides.length;
-      }
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
-    }
-
-
-  </script>
-</html> --}}
+  {{#each categories}}
+  <div class="flex-row category">
+    <img src="{{imageUrl}}" alt="" class="category-logo" />
+    <div class="flex-column category-detail">
+      <h1 class="category-detail__main">{{name}}</h1>
+      <h3 class="category-detail__sub">
+        {{description}}
+      </h3>
+      <a href="javascript:void(0)" class="btn">Explore {{name}}</a>
+    </div>
+  </div>
+  {{/each}}
+</main>
+<script type="text/javascript" src="js/silder.js"></script>

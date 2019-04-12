@@ -1,0 +1,92 @@
+
+<main class="cart-container">
+  <div class="cart-container--head">
+    <div class="cart-container--head_text">My Cart ({{cart.count}} items)</div>
+  </div>
+
+  {{#each cart.items}}
+  <div class="cart-item" data-id="{{product.id}}">
+    <img src="{{product.imageURL}}" alt="{{product.name}}" class="cart-item__img" />
+    <div class="cart-item-detail">
+      <h1 class="cart-item-detail__heading">{{product.name}}</h1>
+      <div class="cart-item-detail__info">
+        <div class="cart-item-detail__info--count">
+          <a class="cart-item-detail__info--remove" data-id="{{product.id}}">&#45;</a>
+          <span class="cart-item-detail__info--item-count" id=qty-{{product.id}}
+            data-id="{{product.id}}">{{count}}</span>
+          <a class="cart-item-detail__info--add" data-id="{{product.id}}">&#43;</a>
+          <span class="cart-item-detail__info--symbol">*</span>
+          <p class="cart-item-detail__info--unitPrice"> &nbsp; Rs.{{product.price}}</p>
+        </div>
+        <span class="cart-item-detail__info--total" data-id="{{product.id}}"> Rs.{{math product.price "*" count}}
+        </span>
+      </div>
+    </div>
+  </div>
+  {{/each }}
+
+  <div class="cart-banner">
+    <img src="/static/images/lowest-price.png" alt="cart banner " />
+  </div>
+  <div class="cart-checkout-section">
+    <p></p>
+    <script>
+      function cartAPI(url, productId) {
+
+        return (
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productId })
+          })
+        )
+      }
+
+      (function (item, cartCountElement) {
+        [].forEach.call(item, element => {
+          element.addEventListener('click', event => {
+            event.preventDefault();
+            const productId = event.target.getAttribute('data-id');
+            const oldqty = document.getElementById(`qty-${productId}`).innerHTML;
+            if (oldqty > 1) {
+              cartAPI('/cart/remove', productId)
+                .then(res => res.json())
+                .then(function (cart) {
+                  cartCountElement.innerHTML = cart.count + ' items';
+                  document.querySelector('.cart-container--head_text').innerHTML= `My Cart (${cart.count} items)`
+                  document.getElementById(`qty-${productId}`).innerHTML = Number(oldqty) - 1;
+                });
+            } else {
+              alert(`It's a Minimum qty can't reduce more  `)
+            }
+          });
+        });
+      })(
+        document.getElementsByClassName('cart-item-detail__info--remove'),
+        document.getElementsByClassName('nav__end-cart--count')[0]
+      );
+      (function (item, cartCountElement) {
+        [].forEach.call(item, element => {
+          element.addEventListener('click', event => {
+            event.preventDefault();
+            const productId = event.target.getAttribute('data-id');
+            cartAPI('/cart/add', productId)
+              .then(res => res.json())
+              .then(function (cart) {
+                cartCountElement.innerHTML = cart.count + ' items';
+                document.querySelector('.cart-container--head_text').innerHTML= `My Cart (${cart.count} items)`
+                const oldqty = document.getElementById(`qty-${productId}`).innerHTML;
+                document.getElementById(`qty-${productId}`).innerHTML = Number(oldqty) + 1;
+              });
+          });
+        });
+      })(
+        document.getElementsByClassName('cart-item-detail__info--add'),
+        document.getElementsByClassName('nav__end-cart--count')[0]
+      );
+
+    </script>
+</main>

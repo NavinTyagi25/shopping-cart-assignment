@@ -1,13 +1,15 @@
+@import '_variables.scss';
+@import 'common.scss';
+
 main.form-container {
   padding: 20px;
   @include break-point(desktop) {
     @include flex-row;
-    padding: 0;
+    
   }
   @include break-point(tablet) {
     @include flex-row;
-    padding: 0;
-  }
+    }
   .heading {
     @include flex-column;
     margin-top: 6%;
