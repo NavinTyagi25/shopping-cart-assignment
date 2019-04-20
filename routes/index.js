@@ -5,7 +5,8 @@ const prodCategories = require('../public/data/categories/index.get.json');
 const products = require('../public/data/products/index.get.json');
 const  cart =  {
   items: [],
-  count: 0
+  count: 0,
+  totalPrice: 0 
 }
 
 router.get('/', function(req, res, next) {
@@ -52,15 +53,18 @@ router.post('/cart/:operation', function(req, res) {
   if (product) {
     const oldItem = cart.items.find(item => item.product.id === product.id);
     if (oldItem) {
+      cart.totalPrice-=oldItem.count * oldItem.product.price 
       oldItem.count += count;
       cart.count += count;
       oldItem.totalPrice= oldItem.count * oldItem.product.price
+      cart.totalPrice += oldItem.totalPrice
       if (oldItem.count <= 0) {
         cart.items.splice(cart.items.findIndex(item => item.product.id === product.id), 1);
       }
     } else {
       cart.items.push({ product, count ,totalPrice : product.price *count });
       cart.count += count;
+      cart.totalPrice +=  product.price *count 
       
     }
     return res.send(cart);

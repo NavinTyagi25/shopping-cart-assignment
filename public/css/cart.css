@@ -202,7 +202,6 @@ footer {
       text-align: left; } }
 
 .cart-container {
-  height: 100vh;
   background-color: #eee; }
   .cart-container--head {
     background-color: white;
@@ -268,7 +267,20 @@ footer {
     display: flex;
     align-items: center;
     background: white; }
+  .cart-container .cart-checkout-section,
   .cart-container .cart-banner {
     background-color: white;
     margin-top: 20px;
     padding: 20px; }
+  .cart-container .cart-checkout-section {
+    margin-top: 20px;
+    padding: 20px; }
+    .cart-container .cart-checkout-section > p {
+      margin-bottom: 10px;
+      text-align: center; }
+    .cart-container .cart-checkout-section > a {
+      display: flex; }
+      .cart-container .cart-checkout-section > a .checkout-heading {
+        flex: 1; }
+      .cart-container .cart-checkout-section > a .total-price {
+        flex: 0 0 5%; }

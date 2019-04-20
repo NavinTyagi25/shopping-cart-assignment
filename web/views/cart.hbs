@@ -1,4 +1,3 @@
-
 <main class="cart-container">
   <div class="cart-container--head">
     <div class="cart-container--head_text">My Cart ({{cart.count}} items)</div>
@@ -18,7 +17,8 @@
           <span class="cart-item-detail__info--symbol">*</span>
           <p class="cart-item-detail__info--unitPrice"> &nbsp; Rs.{{product.price}}</p>
         </div>
-        <span class="cart-item-detail__info--total" data-id="{{product.id}}"> Rs.{{math product.price "*" count}}
+        <span class="cart-item-detail__info--total" data-id="{{product.id}}" id="totalPrice-{{product.id}}">
+          Rs.{{math product.price "*" count}}
         </span>
       </div>
     </div>
@@ -29,64 +29,12 @@
     <img src="/static/images/lowest-price.png" alt="cart banner " />
   </div>
   <div class="cart-checkout-section">
-    <p></p>
-    <script>
-      function cartAPI(url, productId) {
-
-        return (
-          fetch(url, {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ productId })
-          })
-        )
-      }
-
-      (function (item, cartCountElement) {
-        [].forEach.call(item, element => {
-          element.addEventListener('click', event => {
-            event.preventDefault();
-            const productId = event.target.getAttribute('data-id');
-            const oldqty = document.getElementById(`qty-${productId}`).innerHTML;
-            if (oldqty > 1) {
-              cartAPI('/cart/remove', productId)
-                .then(res => res.json())
-                .then(function (cart) {
-                  cartCountElement.innerHTML = cart.count + ' items';
-                  document.querySelector('.cart-container--head_text').innerHTML= `My Cart (${cart.count} items)`
-                  document.getElementById(`qty-${productId}`).innerHTML = Number(oldqty) - 1;
-                });
-            } else {
-              alert(`It's a Minimum qty can't reduce more  `)
-            }
-          });
-        });
-      })(
-        document.getElementsByClassName('cart-item-detail__info--remove'),
-        document.getElementsByClassName('nav__end-cart--count')[0]
-      );
-      (function (item, cartCountElement) {
-        [].forEach.call(item, element => {
-          element.addEventListener('click', event => {
-            event.preventDefault();
-            const productId = event.target.getAttribute('data-id');
-            cartAPI('/cart/add', productId)
-              .then(res => res.json())
-              .then(function (cart) {
-                cartCountElement.innerHTML = cart.count + ' items';
-                document.querySelector('.cart-container--head_text').innerHTML= `My Cart (${cart.count} items)`
-                const oldqty = document.getElementById(`qty-${productId}`).innerHTML;
-                document.getElementById(`qty-${productId}`).innerHTML = Number(oldqty) + 1;
-              });
-          });
-        });
-      })(
-        document.getElementsByClassName('cart-item-detail__info--add'),
-        document.getElementsByClassName('nav__end-cart--count')[0]
-      );
-
-    </script>
+    <p>Promo code appied on Payment page</p>
+    <a class="btn">
+      <span class="checkout-heading">Proceed to checkout</span> 
+      <span id ="cart-total-price" class="total-price">Rs.{{cart.totalPrice}}</span>
+       </a>
+  </div>
+<script type="text/javascript" src="/js/products.js"></script>
+ 
 </main>
