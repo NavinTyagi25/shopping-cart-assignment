@@ -8,13 +8,14 @@
           We do not share you personal detail with anyone.
         </h3>
       </div>
-      <form class="form">
+      <form class="form" action="/SignIn" method="POST" >
         <div class="form__input-container">
           <input
             type="text"
             class="register-form__input"
             required
             name="Full Name"
+            minlength="3"
           />
           <label for="name">Full Name</label>
           <div class="bar"></div>
@@ -26,6 +27,7 @@
             class="register-form__input"
             required
             name="Last Name"
+            minlength="3"
           />
           <label for="name">Last Name</label>
           <div class="bar"></div>
@@ -48,6 +50,7 @@
             class="register-form__input"
             required
             name="Password"
+            minlength="8"
           />
           <label for="name">Password</label>
           <div class="bar"></div>
@@ -59,11 +62,13 @@
             class="register-form__input"
             required
             name="Confirm Password"
+            minlength="8"
           />
           <label for="name">Confirm Password</label>
           <div class="bar"></div>
         </div>
 
-        <a class="btn form__submit" href="/login">Signup</a>
+        {{!-- <a class="btn form__submit" href="/">Signup</a> --}}
+        <button class= "btn form__submit" type="submit" name="signUp">Sign Up</button>
       </form>
     </main>

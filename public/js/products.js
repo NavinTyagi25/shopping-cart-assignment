@@ -2,7 +2,7 @@
     [].forEach.call(item, element => {
       element.addEventListener('click', event => {
         event.preventDefault();
-        const productId = event.target.id; 
+        const productId = event.target.id;
         cartAPI('/cart/add', productId)  
           .then(res => res.json())
           .then(function(cart) {

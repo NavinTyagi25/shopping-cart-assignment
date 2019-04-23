@@ -8,7 +8,7 @@
           Get access to your Orders, Wishlist and Recommendations
         </h3>
       </div>
-      <form class="form">
+      <form class="form" action="/" method="POST">
         <div class="form__input-container">
           <input
             type="text"
@@ -31,6 +31,7 @@
           <div class="bar"></div>
         </div>
 
-        <a class="btn form__submit" href="/">Login</a>
+        {{!-- <a class="btn form__submit" href="/">Login</a> --}}
+        <button class= "btn form__submit" type="submit" name="signUp">Login</button>
       </form>
     </main>

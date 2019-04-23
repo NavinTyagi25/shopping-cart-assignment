@@ -1,6 +1,6 @@
 <header>
       <nav class="nav" role="navigation">
-        <a href="/"><img class="nav__logo" src="/img/logo.png" alt="Sabka Bazaar Logo" />
+        <a href="/"><img class="nav__logo" src="/static/images/logo.png" alt="Sabka Bazaar Logo" />
         </a>
         <ul class="nav__bar">
           <li class="nav__bar--link"><a href="/">Home</a></li>
@@ -8,15 +8,16 @@
         </ul>
         <div class="nav__end">
           <div class="nav__end-register-box">
-            <a class="nav__end-register-box--link" href="/SignUp"
-              >Register</a
-            >
             <a class="nav__end-register-box--link" href="/SignIn"
               >SignIn</a
             >
+            <a class="nav__end-register-box--link" href="/SignUp"
+              >Register</a
+            >
+            
           </div>
           <div class="nav__end-cart">
-            <a href="/cart" id="myBtn"><img src="/img/cart.svg" class="nav__end-cart--logo"></a>
+            <a href="/cart" id="myBtn"><img src="/static/images/cart.svg" class="nav__end-cart--logo"></a>
             <div class="nav__end-cart--count"> {{cart.count}} items </div>
           </div>
         </div>

@@ -96,7 +96,6 @@ body {
         width: 12vw; } }
     .nav__end-register-box {
       display: flex;
-      flex-direction: row-reverse;
       height: 34%;
       display: none; }
       @media only screen and (min-width: 480px) {

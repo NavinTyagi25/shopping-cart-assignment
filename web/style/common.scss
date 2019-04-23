@@ -153,7 +153,7 @@ body {
 
     &-register-box {
       @include flex;
-      flex-direction: row-reverse;
+      // flex-direction: row-reverse;
       height: 34%;
       display: none;
       @include break-point(tablet) {
