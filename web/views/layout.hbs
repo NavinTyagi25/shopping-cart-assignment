@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sabka Bazar</title>
+    <title>{{pageName}} Page</title>
     <link href="/css/{{pageName}}.css" rel="stylesheet">
 </head>
 
@@ -13,8 +13,47 @@
     {{> header}}
     {{{body}}}
     {{> footer}}
+    <!-- The Modal -->
+    <!-- The Modal -->
+    <div id="cart-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Cart</h2>
+            </div>
+            <div class="modal-body">
+                {{#each cart.items}}
+                <div class="cart-item" data-id="{{product.id}}">
+                    <img src="{{product.imageURL}}" alt="{{product.name}}" class="cart-item__img" />
+                    <div class="cart-item-detail">
+                        <h1 class="cart-item-detail__heading">{{product.name}}</h1>
+                        <div class="cart-item-detail__info">
+                            <div class="cart-item-detail__info--count">
+                                <a class="cart-item-detail__info--remove" data-id="{{product.id}}">&#45;</a>
+                                <span class="cart-item-detail__info--item-count" id=qty-{{product.id}}
+                                    data-id="{{product.id}}">{{count}}</span>
+                                <a class="cart-item-detail__info--add" data-id="{{product.id}}">&#43;</a>
+                                <span class="cart-item-detail__info--symbol">*</span>
+                                <p class="cart-item-detail__info--unitPrice"> &nbsp; Rs.{{product.price}}</p>
+                            </div>
+                            <span class="cart-item-detail__info--total" data-id="{{product.id}}"
+                                id="totalPrice-{{product.id}}">
+                                Rs.{{math product.price "*" count}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {{/each }}
+            </div>
+            <div class="modal-footer">
+                <h3>Go to Checkout</h3>
+            </div>
+        </div>
+
+    </div>
 
 </body>
-</body>
+<script type="text/javascript" src="/js/tooltip.js"></script>
 
 </html>

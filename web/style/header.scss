@@ -1,0 +1,197 @@
+@import "./layout.scss";
+
+.nav-section {
+  display: flex;
+  height: 55px;
+
+  @include break-point(tablet) {
+    height: $header-height;
+  }
+  @include break-point(desktop) {
+    height: $header-height;
+  }
+  box-shadow: 0 8px 6px -3px $grey-color-3;
+  @include app-header-padding-changes;
+
+  &__logo {
+    margin-left: 1vw;
+    width: 20vw;
+    padding: 9.5px 0;
+    @include break-point(tablet) {
+      margin-left: 0;
+      width: 23vw;
+    }
+
+    @include break-point(desktop) {
+      margin-left: 0;
+      width: 13vw;
+    }
+  }
+  &__bar {
+    @include flex-row;
+    list-style: none;
+    margin-left: 7vw;
+    padding: 9.5px 0;
+
+    &--link {
+      @include flex-column-reverse;
+      margin-left: 2vw;
+      display: none;
+      @include break-point(tablet) {
+        display: flex;
+      }
+      a {
+        color: #736a6d;
+      }
+    }
+  }
+
+  &__end {
+    @include flex;
+    flex-direction: column;
+    width: 19vw;
+    @include break-point(tablet) {
+      width: 12vw;
+      margin-right: 10px;
+    }
+    @include break-point(desktop) {
+      width: 10vw;
+    }
+
+    &-register-box {
+      @include flex;
+      height: 34%;
+      display: none;
+      @include break-point(tablet) {
+        display: flex;
+      }
+
+      &--link {
+        font-size: 0.7rem;
+        margin-left: 1.5vw;
+      }
+    }
+    &-cart {
+      @include flex-row;
+      justify-content: center;
+      align-items: center;
+      background-color: $grey-color-3;
+      position: relative;
+
+      &--count {
+        display: none;
+        @include break-point(tablet) {
+          display: block;
+        }
+        @include break-point(desktop) {
+          display: block;
+        }
+      }
+      &--count-mobile {
+        display: block;
+        position: absolute;
+        top: 1px;
+        @include break-point(tablet) {
+          display: none;
+        }
+        @include break-point(desktop) {
+          display: none;
+        }
+      }
+
+      &--logo {
+        height: 0.37 * $header-height;
+        fill: $background-color-secondary;
+      }
+    }
+  }
+}
+
+// toggle menu for mobile
+.menu-toggle {
+  display: block;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+  align-self: center;
+  @include break-point(tablet) {
+    display: none;
+  }
+
+  input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    
+    &:checked ~ i {
+      opacity: 1;
+      transform: rotate(45deg) translate(-2px, -1px);
+      background: #232323;
+    }
+    &:checked ~ i:nth-last-child(3) {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+    &:checked ~ i:nth-last-child(2) {
+      transform: rotate(-45deg) translate(0, -1px);
+    }
+    &:checked ~ ul {
+      display: block;
+      transform: translate(-150%, 0);
+    }
+  }
+  i {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: $grey-color;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      opacity 0.55s ease;
+    &:first-child {
+      transform-origin: 0% 0%;
+    }
+    &:nth-last-child(2) {
+      transform-origin: 0% 100%;
+    }
+  }
+}
+
+// mobile menu toggle list
+.menu {
+  $menu-width: 300px;
+
+  display: none;
+
+  position: absolute;
+  width: $menu-width;
+  margin: -120px 0 0 $menu-width;
+  padding: 50px;
+  padding-top: 125px;
+  background: $grey-color-1;
+  list-style-type: none;
+
+  transform-origin: 0% 0%;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+
+  &--link {
+    transition: color 0.3s ease;
+    &:hover {
+      color: $link-color-primary;
+    }
+  }
+  li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+}

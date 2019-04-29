@@ -1,0 +1,9 @@
+footer {
+    padding: 10px 0;
+    text-align: center;
+    background-color: $grey-color-2;
+    @include app-header-padding-changes;
+    @include break-point(desktop) {
+      text-align: left;
+    }
+  }

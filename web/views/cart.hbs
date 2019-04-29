@@ -1,6 +1,6 @@
 <main class="cart-container">
   <div class="cart-container--head">
-    <div class="cart-container--head_text">My Cart ({{cart.count}} items)</div>
+    <div class="cart-container--head_text" id ="cart-heading-text">My Cart ({{cart.count}} items)</div>
   </div>
 
   {{#each cart.items}}
@@ -26,7 +26,7 @@
   {{/each }}
 
   <div class="cart-banner">
-    <img src="/static/images/lowest-price.png" alt="cart banner " />
+    <img src="/static/images/lowest-price.png" alt="cart banner" />
   </div>
   <div class="cart-checkout-section">
     <p>Promo code appied on Payment page</p>

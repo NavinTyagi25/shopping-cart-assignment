@@ -1,0 +1,139 @@
+// Cart Modal
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  margin-top: 100px; /* Location of the box */
+  left: 49%;
+  top: 0;
+  width: 500px; /* Full width */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  color: #fff;
+}
+
+/* Modal Content */
+.modal-content {
+  height: 80vh; /* Full height */
+  position: relative;
+  background-color: #eee;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  color: #111;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: $text-color-primary;
+  color: $background-color-primary;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: $background-color-secondary;
+  color: $background-color-primary;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding: 2px 16px;
+}
+
+.cart-item {
+  @extend .flex-row;
+  margin-top: 10px;
+  background-color: #fff;
+  &__img {
+    width: 20%;
+    height: 21%;
+  }
+}
+
+.cart-item-detail {
+  @extend .flex-column;
+  &__heading {
+    font-size: 1.5rem;
+    padding: 15px;
+  }
+  &__info {
+    @extend .flex-row;
+    font-size: 1rem;
+    align-items: center;
+
+    &--count {
+      @extend .flex-row;
+    }
+    &--item {
+      &-count {
+        margin-top: 4px;
+      }
+    }
+    &--unitPrice {
+      margin-top: 4px;
+    }
+    &--symbol {
+      margin-top: 2px;
+      font-size: 1.5rem;
+    }
+    &--remove,
+    &--add {
+      @include break-point(desktop) {
+        margin: 0 25px 7px 25px;
+        height: 25px;
+        width: 25px;
+      }
+      @include break-point(tablet) {
+        margin: 0 20px 7px 20px;
+        height: 25px;
+        width: 25px;
+      }
+      margin: 0 12px 7px 12px;
+      height: 25px;
+      width: 25px;
+      background: $background-color-secondary;
+      text-align: center;
+      color: $text-color-secondary;
+      border-radius: 100%;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      
+    }
+    &--total {
+      margin: 0 50px 10px 0 ;
+    }
+  }
+}
+
+.cart__content__price {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  @extend .flex-row;
+  align-items: center;
+  background: white;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

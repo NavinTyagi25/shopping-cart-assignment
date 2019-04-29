@@ -5,16 +5,17 @@
       <img src={{bannerImageUrl}} alt={{bannerImageAlt}} class="sale" style="width:100%" />
     </div>
     {{/each}}
-    <a class="prev">&#10094;</a>
+    <a class="prev ">&#10094;</a>
     <a class="next">&#10095;</a>
-    <div style="text-align:center">
+    <div class="dots  u-center">
 
       {{#each banners}}
-      <span class="dot" id={{order}} onclick="currentSlide({{order}})"></span>
+      <span class="dot" id={{order}} ></span>
       {{/each}}
     </div>
   </div>
 
+    
   {{#each categories}}
   <div class="flex-row category">
     <img src="{{imageUrl}}" alt="" class="category-logo" />
@@ -29,3 +30,4 @@
   {{/each}}
 </main>
 <script type="text/javascript" src="js/silder.js"></script>
+<script type="text/javascript" src="js/home.js"></script>

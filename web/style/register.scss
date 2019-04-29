@@ -1,6 +1,7 @@
 @import '_variables.scss';
 @import 'common.scss';
 
+
 main.form-container {
   padding: 20px;
   @include break-point(desktop) {
@@ -44,7 +45,7 @@ main.form-container {
         background: $background-color-primary;
         font-size: $width/15;
         transition: 0.3s ease;
-        font-family: "Dosis";
+        
 
         &:valid {
           ~ label {
